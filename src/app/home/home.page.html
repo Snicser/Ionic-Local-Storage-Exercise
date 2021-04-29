@@ -1,20 +1,67 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid>
+    <!-- Article name input -->
+    <ion-row>
+      <ion-col>
+        <!-- Melding item toegevoegt -->
+        <p id="product-alert-inserted"></p>
+
+        <ion-item>
+          <ion-input name="articleNameInput"
+                     id="articleNameInput"
+                     type="text"
+                     placeholder="Broodje kaas"
+                     inputmode="text"
+                     [(ngModel)]="articleName">
+          </ion-input>
+        </ion-item>
+
+        <!-- Article price input -->
+        <ion-item>
+          <ion-input name="articlePriceInput"
+                     id="articlePriceInput"
+                     type="text"
+                     placeholder="€2,50"
+                     inputmode="numeric"
+                     [(ngModel)]="articlePrice">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- Buttons -->
+    <ion-row>
+      <ion-col>
+
+        <!-- Save button -->
+        <!-- Saves data -->
+        <ion-button (click)="setItem()" class="ion-margin-end">
+          <ion-icon slot="icon-only" name="save"></ion-icon>
+        </ion-button>
+
+        <!-- Edit button -->
+        <ion-button (click)="getArticlesList()" class="ion-margin-end">
+          <ion-icon slot="icon-only" name="download-outline"></ion-icon>
+        </ion-button>
+
+        <!-- Clear input button -->
+        <ion-button (click)="clearInput()" class="ion-margin-end">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row color="primary" justify-content-center *ngFor="let article of articles">
+      <ion-col align-self-center size-md="8" size-lg="9" size-xs="6">
+        <h2>{{article.name}}</h2>
+      </ion-col>
+
+      <ion-col align-self-center size-md="2" size-lg="3" size-xs="6">
+        <h2>{{article.price}}</h2>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
